@@ -68,7 +68,7 @@ const galleryList = document.querySelector(".gallery");
 
 function galleryItem({ preview, original, description }) {
   return `<li class="gallery-item">
-  <a class="gallery-link" href="large-image.jpg">
+  <a class="gallery-link" href="${original}">
     <img
       class="gallery-image"
       src="${preview}"
@@ -80,7 +80,7 @@ function galleryItem({ preview, original, description }) {
 `;
 }
 
-const galleryMarkup = images.map(galleryItem);
+const galleryMarkup = images.map(galleryItem).join("");
 
 galleryList.insertAdjacentHTML("beforeend", galleryMarkup);
 
@@ -90,10 +90,12 @@ function onItemClick(event) {
   if (!classContain) {
     return;
   }
+  const ogiginalImg = event.target.dataset.source;
+  const imageDescr = event.target.alt;
 
   const instance = basicLightbox.create(`
       <div class="modal">
-      
+          <img src="${ogiginalImg}" alt="${imageDescr}">
       </div>
   `);
 
