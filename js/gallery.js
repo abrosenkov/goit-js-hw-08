@@ -80,7 +80,7 @@ function galleryItem({ preview, original, description }) {
 `;
 }
 
-const galleryMarkup = images.map(galleryItem).join("");
+const galleryMarkup = images.map(galleryItem);
 
 galleryList.insertAdjacentHTML("beforeend", galleryMarkup);
 
@@ -90,12 +90,10 @@ function onItemClick(event) {
   if (!classContain) {
     return;
   }
-  const ogiginalImg = event.target.dataset.source;
-  const imageDescr = event.target.alt;
 
   const instance = basicLightbox.create(`
       <div class="modal">
-          <img src="${ogiginalImg}" alt="${imageDescr}">
+      
       </div>
   `);
 
